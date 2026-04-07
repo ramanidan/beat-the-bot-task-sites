@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Northlake Logistics — Manifest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/data-site/data.css" />
+  </head>
+  <body>
+    <header class="dl-header">
+      <div class="dl-brand">
+        <span class="dl-logo">NL</span>
+        <div>
+          <div class="dl-title">Northlake Logistics</div>
+          <div class="dl-sub">Partner manifest portal (demo)</div>
+        </div>
+      </div>
+      <span class="dl-pill" id="variant-pill">Variant —</span>
+    </header>
+
+    <main class="dl-main">
+      <section class="dl-card">
+        <h1>Shipment manifest</h1>
+        <p class="dl-lead">
+          Copy the row below into the intake form. Category and handling tags require judgment from
+          the notes.
+        </p>
+        <div class="dl-table-wrap">
+          <table class="dl-table" id="manifest-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>SKU</th>
+                <th>Qty</th>
+                <th>Contact</th>
+                <th>Priority</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="manifest-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dl-card dl-hint">
+        <h2>Routing hints</h2>
+        <ul id="hint-list"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/data-site/data.ts"></script>
+  </body>
+</html>

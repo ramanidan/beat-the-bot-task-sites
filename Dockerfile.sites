@@ -1,0 +1,4 @@
+# Static hosting for Vite multi-page build (data-site, form-site, player assets).
+# Build context: beat-the-bot/ after `npm run build` (dist/ must exist).
+FROM nginx:1.27-alpine
+COPY dist/ /usr/share/nginx/html/

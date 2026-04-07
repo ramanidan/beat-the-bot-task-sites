@@ -1,0 +1,7 @@
+# Netlify: connect repo with base directory = beat-the-bot, or CLI: npm run deploy:netlify
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

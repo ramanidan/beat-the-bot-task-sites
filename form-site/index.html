@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intake — CargoDesk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/form-site/form.css" />
+  </head>
+  <body>
+    <div class="fd-shell">
+      <header class="fd-header">
+        <div>
+          <div class="fd-kicker">CargoDesk</div>
+          <h1 class="fd-title">Inbound intake</h1>
+        </div>
+        <span class="fd-pill">Demo form</span>
+      </header>
+
+      <form class="fd-form" id="intake-form">
+        <p class="fd-note">
+          Paste values from the <strong>Northlake manifest</strong>. Category and handling require
+          interpretation of the notes.
+        </p>
+
+        <label class="fd-field">
+          <span>Order ID</span>
+          <input name="order_id" type="text" autocomplete="off" placeholder="ORD-…" required />
+        </label>
+
+        <label class="fd-field">
+          <span>SKU</span>
+          <input name="sku" type="text" autocomplete="off" required />
+        </label>
+
+        <label class="fd-field">
+          <span>Quantity</span>
+          <input name="qty" type="number" min="1" required />
+        </label>
+
+        <label class="fd-field">
+          <span>Contact email</span>
+          <input name="contact" type="email" autocomplete="off" required />
+        </label>
+
+        <fieldset class="fd-fieldset">
+          <legend>Shipment category</legend>
+          <p class="fd-hint">Choose based on priority and whether the line looks like bulk freight.</p>
+          <label class="fd-radio">
+            <input type="radio" name="category" value="standard" required />
+            Standard
+          </label>
+          <label class="fd-radio">
+            <input type="radio" name="category" value="expedited" />
+            Expedited
+          </label>
+          <label class="fd-radio">
+            <input type="radio" name="category" value="bulk" />
+            Bulk
+          </label>
+        </fieldset>
+
+        <fieldset class="fd-fieldset">
+          <legend>Handling tags</legend>
+          <p class="fd-hint">Multi-select — match the manifest notes.</p>
+          <label class="fd-check">
+            <input type="checkbox" name="tag" value="fragile" />
+            Fragile
+          </label>
+          <label class="fd-check">
+            <input type="checkbox" name="tag" value="refrigerated" />
+            Refrigerated
+          </label>
+          <label class="fd-check">
+            <input type="checkbox" name="tag" value="signature" />
+            Signature required
+          </label>
+        </fieldset>
+
+        <label class="fd-field">
+          <span>Verifier comment (optional)</span>
+          <textarea name="comment" rows="2" placeholder="Anything the warehouse should know"></textarea>
+        </label>
+
+        <button type="submit" class="fd-submit">Submit intake</button>
+      </form>
+
+      <div class="fd-toast" id="fd-toast" hidden role="status"></div>
+    </div>
+
+    <script type="module" src="/form-site/form.ts"></script>
+  </body>
+</html>
