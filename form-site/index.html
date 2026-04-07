@@ -22,72 +22,100 @@
         <span class="fd-pill">Demo form</span>
       </header>
 
-      <form class="fd-form" id="intake-form">
+      <form class="fd-form" id="intake-form" novalidate>
         <p class="fd-note">
           Paste values from the <strong>Northlake manifest</strong>. Category and handling require
           interpretation of the notes.
         </p>
 
-        <label class="fd-field">
-          <span>Order ID</span>
-          <input name="order_id" type="text" autocomplete="off" placeholder="ORD-…" required />
-        </label>
+        <div class="fd-progress" aria-live="polite">
+          <span class="fd-progress-label" id="fd-progress-label">Step 1 of 3 — Manifest line</span>
+          <div class="fd-progress-dots" role="presentation">
+            <span class="fd-dot fd-dot--on" data-dot="0"></span>
+            <span class="fd-dot" data-dot="1"></span>
+            <span class="fd-dot" data-dot="2"></span>
+          </div>
+        </div>
 
-        <label class="fd-field">
-          <span>SKU</span>
-          <input name="sku" type="text" autocomplete="off" required />
-        </label>
-
-        <label class="fd-field">
-          <span>Quantity</span>
-          <input name="qty" type="number" min="1" required />
-        </label>
-
-        <label class="fd-field">
-          <span>Contact email</span>
-          <input name="contact" type="email" autocomplete="off" required />
-        </label>
-
-        <fieldset class="fd-fieldset">
-          <legend>Shipment category</legend>
-          <p class="fd-hint">Choose based on priority and whether the line looks like bulk freight.</p>
-          <label class="fd-radio">
-            <input type="radio" name="category" value="standard" required />
-            Standard
+        <!-- Step 1: manifest fields -->
+        <div class="fd-step fd-step--active" data-step="0" role="region" aria-labelledby="fd-step-0-title">
+          <h2 class="fd-step-title" id="fd-step-0-title">Manifest line</h2>
+          <label class="fd-field">
+            <span>Order ID</span>
+            <input name="order_id" type="text" autocomplete="off" placeholder="ORD-…" required />
           </label>
-          <label class="fd-radio">
-            <input type="radio" name="category" value="expedited" />
-            Expedited
+          <label class="fd-field">
+            <span>SKU</span>
+            <input name="sku" type="text" autocomplete="off" required />
           </label>
-          <label class="fd-radio">
-            <input type="radio" name="category" value="bulk" />
-            Bulk
+          <label class="fd-field">
+            <span>Quantity</span>
+            <input name="qty" type="number" min="1" required />
           </label>
-        </fieldset>
+          <label class="fd-field">
+            <span>Contact email</span>
+            <input name="contact" type="email" autocomplete="off" required />
+          </label>
+          <div class="fd-step-actions fd-step-actions--end">
+            <button type="button" class="fd-btn fd-btn-primary" id="fd-next-0">Next</button>
+          </div>
+        </div>
 
-        <fieldset class="fd-fieldset">
-          <legend>Handling tags</legend>
-          <p class="fd-hint">Multi-select — match the manifest notes.</p>
-          <label class="fd-check">
-            <input type="checkbox" name="tag" value="fragile" />
-            Fragile
-          </label>
-          <label class="fd-check">
-            <input type="checkbox" name="tag" value="refrigerated" />
-            Refrigerated
-          </label>
-          <label class="fd-check">
-            <input type="checkbox" name="tag" value="signature" />
-            Signature required
-          </label>
-        </fieldset>
+        <!-- Step 2: category + tags -->
+        <div class="fd-step" data-step="1" hidden role="region" aria-labelledby="fd-step-1-title">
+          <h2 class="fd-step-title" id="fd-step-1-title">Shipment rules</h2>
+          <fieldset class="fd-fieldset">
+            <legend>Shipment category</legend>
+            <p class="fd-hint">Choose based on priority and whether the line looks like bulk freight.</p>
+            <label class="fd-radio">
+              <input type="radio" name="category" value="standard" required />
+              Standard
+            </label>
+            <label class="fd-radio">
+              <input type="radio" name="category" value="expedited" />
+              Expedited
+            </label>
+            <label class="fd-radio">
+              <input type="radio" name="category" value="bulk" />
+              Bulk
+            </label>
+          </fieldset>
 
-        <label class="fd-field">
-          <span>Verifier comment (optional)</span>
-          <textarea name="comment" rows="2" placeholder="Anything the warehouse should know"></textarea>
-        </label>
+          <fieldset class="fd-fieldset">
+            <legend>Handling tags</legend>
+            <p class="fd-hint">Multi-select — match the manifest notes.</p>
+            <label class="fd-check">
+              <input type="checkbox" name="tag" value="fragile" />
+              Fragile
+            </label>
+            <label class="fd-check">
+              <input type="checkbox" name="tag" value="refrigerated" />
+              Refrigerated
+            </label>
+            <label class="fd-check">
+              <input type="checkbox" name="tag" value="signature" />
+              Signature required
+            </label>
+          </fieldset>
 
-        <button type="submit" class="fd-submit">Submit intake</button>
+          <div class="fd-step-actions">
+            <button type="button" class="fd-btn fd-btn-secondary" id="fd-back-1">Back</button>
+            <button type="button" class="fd-btn fd-btn-primary" id="fd-next-1">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3: optional comment + submit -->
+        <div class="fd-step" data-step="2" hidden role="region" aria-labelledby="fd-step-2-title">
+          <h2 class="fd-step-title" id="fd-step-2-title">Review &amp; submit</h2>
+          <label class="fd-field">
+            <span>Verifier comment (optional)</span>
+            <textarea name="comment" rows="3" placeholder="Anything the warehouse should know"></textarea>
+          </label>
+          <div class="fd-step-actions">
+            <button type="button" class="fd-btn fd-btn-secondary" id="fd-back-2">Back</button>
+            <button type="submit" class="fd-btn fd-btn-submit">Submit intake</button>
+          </div>
+        </div>
       </form>
 
       <div class="fd-toast" id="fd-toast" hidden role="status"></div>
