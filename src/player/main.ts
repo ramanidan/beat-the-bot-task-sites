@@ -326,8 +326,11 @@ export class PlayerApp {
     this.formPanel.hidden = tab !== "form";
   }
 
+  /** Origin + Vite base path (required on GitHub Pages project sites: /repo/… not domain root). */
   private baseUrl(): string {
-    return window.location.origin;
+    const base = import.meta.env.BASE_URL ?? "/";
+    const path = base.replace(/\/$/, "");
+    return path === "" ? window.location.origin : `${window.location.origin}${path}`;
   }
 
   private updateIframes(): void {
